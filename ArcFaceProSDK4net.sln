@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcFaceProSDK4net", "ArcFaceProSDK4net\ArcFaceProSDK4net.csproj", "{F8CE6B93-EC75-432D-9176-57A878FF2E34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testcorefx", "Testcorefx\Testcorefx.csproj", "{B5DFD24B-F159-4C44-AD10-ACFD4AAC32BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8CE6B93-EC75-432D-9176-57A878FF2E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CE6B93-EC75-432D-9176-57A878FF2E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CE6B93-EC75-432D-9176-57A878FF2E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CE6B93-EC75-432D-9176-57A878FF2E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DFD24B-F159-4C44-AD10-ACFD4AAC32BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DFD24B-F159-4C44-AD10-ACFD4AAC32BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DFD24B-F159-4C44-AD10-ACFD4AAC32BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DFD24B-F159-4C44-AD10-ACFD4AAC32BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03F4949F-44F0-4726-A76F-910CF02F5FA9}
+	EndGlobalSection
+EndGlobal

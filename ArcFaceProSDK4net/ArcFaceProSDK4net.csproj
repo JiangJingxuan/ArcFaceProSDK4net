@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net452;</TargetFrameworks>
+    <Version>4.0.390.1</Version>
+    <Authors>姜春辉</Authors>
+    <Company>青岛通软网络科技有限公司</Company>
+    <Description>虹软ArcFacePro人脸识别增值版SDK封装.
+当前支持版本免费版2.x, 3.x, 增值版2.x, 3.x, 4,x</Description>
+    <Product>虹软ArcFacePro人脸识别SDK</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DocumentationFile>D:\GSProject\Arcface4net\ArcFaceProSDK4net\ArcFaceProSDK4net.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Drawing.Common">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
