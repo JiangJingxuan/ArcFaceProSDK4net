@@ -8,6 +8,9 @@
     <Description>虹软ArcFacePro人脸识别增值版SDK封装.
 当前支持版本免费版2.x, 3.x, 增值版2.x, 3.x, 4,x</Description>
     <Product>虹软ArcFacePro人脸识别SDK</Product>
+    <RepositoryUrl>https://github.com/JiangJingxuan/ArcFaceProSDK4net</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/JiangJingxuan/ArcFaceProSDK4net</PackageProjectUrl>
+    <PackageTags>arcface</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
