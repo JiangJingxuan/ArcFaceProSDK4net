@@ -161,6 +161,8 @@ namespace ArcFaceProSDK4net
                 combinedMask |= ASF_Mask.ASF_MASKDETECT;
             CombinedMask = combinedMask;
             IntPtr hEngine = IntPtr.Zero;
+            if (_version <= 2 && orientPriority == ArcSoftFace_OrientPriority.ASF_OP_ALL_OUT)
+                orientPriority = ArcSoftFace_OrientPriority.ASF_OP_0_ONLY;
             var result =
                 _version >= 4 ?
                 ASFFunctions.ASFInitEngine(detectMode, orientPriority, detectFaceMaxNum, (int)combinedMask, out hEngine) :

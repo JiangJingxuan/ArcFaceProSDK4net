@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net452;</TargetFrameworks>
-    <Version>4.0.390.1</Version>
+    <Version>4.0.390.2</Version>
     <Authors>姜春辉</Authors>
     <Company>青岛通软网络科技有限公司</Company>
     <Description>虹软ArcFacePro人脸识别增值版SDK封装.
