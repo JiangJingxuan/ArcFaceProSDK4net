@@ -1,0 +1,798 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ArcFaceProSDK4net</name>
+    </assembly>
+    <members>
+        <member name="T:ArcFaceProSDK4net.ASFFunctions">
+            <summary>
+            sdk import
+            </summary>
+        </member>
+        <member name="T:ArcFaceProSDK4net.ASFFunctions.Compatible">
+            <summary>
+            兼容低版本SDK
+            </summary>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.Compatible.ASFGetVersion(System.IntPtr)">
+            <summary>
+            获取版本信息(2.x)
+            </summary>
+            <param name="hEngine">引擎 handle </param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.Compatible.ASFInitEngine(ArcFaceProSDK4net.Models.ASF_DetectMode,ArcFaceProSDK4net.Models.ArcSoftFace_OrientPriority,System.Int32,System.Int32,System.Int32,System.IntPtr@)">
+            <summary>
+            初始化引擎。
+            </summary>
+            <param name="detectMode">VIDEO模式:处理连续帧的图像数据    IMAGE模式:处理单张的图像数据</param>
+            <param name="detectFaceOrientPriority">人脸检测角度，推荐单一角度检测</param>
+            <param name="detectFaceScaleVal">识别的最小人脸比例（图片长边与人脸框长边的比值）  VIDEO模式取值范围[2, 32]，推荐值为16 IMAGE模式取值范围[2, 32]，推荐值为32</param>
+            <param name="detectFaceMaxNum">最大需要检测的人脸个数，取值范围[1,50]</param>
+            <param name="combinedMask">需要启用的功能组合，可多选</param>
+            <param name="hEngine">引擎句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.Compatible.ASFFaceFeatureExtract(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_FaceFeature@,System.Int32)">
+            <summary>
+            单人脸特征提取。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度，YUYV/I420/NV21/NV12格式为2的倍数；BGR24/GRAY/DEPTH_U16格式无限制；</param>
+            <param name="format">图像的颜色格式</param>
+            <param name="imgData">图像数据</param>
+            <param name="faceInfo">单人脸信息（人脸框、人脸角度、人脸数据）</param>
+            <param name="feature">提取到的人脸特征信息</param>
+            <param name="threadNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.Compatible.ASFFaceFeatureExtractEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_FaceFeature@,System.Int32)">
+            <summary>
+            单人特征提取。
+            <para>注：该接口与 ASFFaceFeatureExtract 功能一致，但采用结构体的形式传入图像数据，对更高精度的图像兼容性更好。</para>
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="faceInfo">单人脸信息（人脸框、人脸角度）</param>
+            <param name="feature">提取到的人脸特征信息</param>
+            <param name="threadNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.Compatible.ASFOnlineActivation(System.String,System.String)">
+            <summary>
+            用于免费版在线激活SDK。
+            </summary>
+            <param name="AppId">官网获取的APPID</param>
+            <param name="SDKKey">官网获取的SDKKEY</param>
+            <returns></returns>
+        </member>
+        <member name="F:ArcFaceProSDK4net.ASFFunctions.Dll_PATH">
+            <summary>
+            dll path
+            </summary>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetVersion">
+            <summary>
+            获取版本信息
+            </summary>
+            <returns>调用结果</returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetActiveFileInfo(ArcFaceProSDK4net.Models.ASF_ActiveFileInfo@)">
+            <summary>
+            获取激活文件信息。
+            </summary>
+            <param name="activeFileInfo">激活文件信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFOnlineActivation(System.String,System.String,System.String)">
+            <summary>
+            用于在线激活SDK。
+            </summary>
+            <param name="AppId">官网获取的APPID</param>
+            <param name="SDKKey">官网获取的SDKKEY</param>
+            <param name="ActiveKey">官网获取的ACTIVEKEY</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetActiveDeviceInfo(System.IntPtr@)">
+            <summary>
+            采集当前设备信息（可离线）。
+            </summary>
+            <param name="deviceInfo">采集的设备信息，用于上传到后台生成离线授权文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFOfflineActivation(System.String)">
+            <summary>
+            用于离线激活SDK。
+            </summary>
+            <param name="filePath">许可文件路径(虹软开放平台开发者中心端获取的文件)</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFInitEngine(ArcFaceProSDK4net.Models.ASF_DetectMode,ArcFaceProSDK4net.Models.ArcSoftFace_OrientPriority,System.Int32,System.Int32,System.IntPtr@)">
+            <summary>
+            初始化引擎。
+            </summary>
+            <param name="detectMode">VIDEO模式:处理连续帧的图像数据        IMAGE模式:处理单张的图像数据</param>
+            <param name="detectFaceOrientPriority">人脸检测角度，推荐单一角度检测</param>
+            <param name="detectFaceMaxNum">最大需要检测的人脸个数，取值范围[1,10]</param>
+            <param name="combinedMask">需要启用的功能组合，可多选</param>
+            <param name="hEngine">引擎句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFDetectFaces(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo@,ArcFaceProSDK4net.Models.ASF_DetectModel)">
+            <summary>
+            检测人脸信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度，YUYV/I420/NV21/NV12格式为2的倍数；BGR24/GRAY/DEPTH_U16格式无限制；</param>
+            <param name="format">图像的颜色格式</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">检测到的人脸信息</param>
+            <param name="detectModel">预留字段，当前版本使用默认参数即可</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFDetectFacesEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo@,ArcFaceProSDK4net.Models.ASF_DetectModel)">
+            <summary>
+            检测人脸信息。
+            <para>注：该接口与 ASFDetectFaces 功能一致，但采用结构体的形式传入图像数据，对更高精度的图像兼容性更好。</para>
+            </summary>
+            <param name="hEngine"></param>
+            <param name="imgData"></param>
+            <param name="detectedFaces"></param>
+            <param name="detectModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFUpdateFaceData(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo@)">
+            <summary>
+            更新人脸信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度，YUYV/I420/NV21/NV12格式为2的倍数；BGR24/GRAY/DEPTH_U16格式无限制；</param>
+            <param name="format">图像的颜色格式</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">更新后的人脸信息（既为入参也为出参，该接口主要是更新faceDataInfoList值）</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFUpdateFaceDataEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo@)">
+            <summary>
+            更新人脸信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">更新后的人脸信息（既为入参也为出参，该接口主要是更新faceDataInfoList值）</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFImageQualityDetect(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,System.Int32,System.Single@,ArcFaceProSDK4net.Models.ASF_DetectModel)">
+            <summary>
+            支持单人脸图像质量检测。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度</param>
+            <param name="height">图片高度</param>
+            <param name="format">颜色空间格式</param>
+            <param name="imgData">图片数据</param>
+            <param name="faceInfo">人脸位置信息</param>
+            <param name="isMask">仅支持传入1、0、-1，戴口罩 1，否则认为未戴口罩</param>
+            <param name="confidenceLevel">人脸图像质量检测结果</param>
+            <param name="detectModel">预留字段，当前版本使用默认参数即可</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFImageQualityDetectEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,System.Int32,System.Single@,ArcFaceProSDK4net.Models.ASF_DetectModel)">
+            <summary>
+            支持单人脸图像质量检测。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="faceInfo">人脸位置信息</param>
+            <param name="isMask">仅支持传入1、0、-1，戴口罩 1，否则认为未戴口罩</param>
+            <param name="confidenceLevel">人脸图像质量检测结果</param>
+            <param name="detectModel">预留字段，当前版本使用默认参数即可</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFFaceFeatureExtract(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_RegisterOrNot,System.Int32,ArcFaceProSDK4net.Models.ASF_FaceFeature@)">
+            <summary>
+            单人脸特征提取。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度，YUYV/I420/NV21/NV12格式为2的倍数；BGR24/GRAY/DEPTH_U16格式无限制；</param>
+            <param name="format">图像的颜色格式</param>
+            <param name="imgData">图像数据</param>
+            <param name="faceInfo">单人脸信息（人脸框、人脸角度、人脸数据）</param>
+            <param name="registerOrNot">注册照：ASF_REGISTER  识别照：ASF_RECOGNITION</param>
+            <param name="mask">带口罩 1，否则0</param>
+            <param name="feature">提取到的人脸特征信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFFaceFeatureExtractEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_RegisterOrNot,System.Int32,ArcFaceProSDK4net.Models.ASF_FaceFeature@)">
+            <summary>
+            单人特征提取。
+            <para>注：该接口与 ASFFaceFeatureExtract 功能一致，但采用结构体的形式传入图像数据，对更高精度的图像兼容性更好。</para>
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="faceInfo">单人脸信息（人脸框、人脸角度）</param>
+            <param name="registerOrNot">注册照：ASF_REGISTER        识别照：ASF_RECOGNITION</param>
+            <param name="mask">带口罩 1，否则0</param>
+            <param name="feature">提取到的人脸特征信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFProcess(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo,System.Int32)">
+            <summary>
+            人脸属性检测（年龄/性别/3D角度/口罩/额头区域），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度，YUYV/I420/NV21/NV12格式为2的倍数；BGR24格式无限制；</param>
+            <param name="format">支持YUYV/I420/NV21/NV12/BGR24</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">多人脸信息</param>
+            <param name="combinedMask">1.检测的属性（ASF_AGE、ASF_GENDER、 ASF_FACE3DANGLE、ASF_LIVENESS、ASF_FACELANDMARK、ASF_MASKDETECT）支持多选;2.检测的属性须在引擎初始化接口的combinedMask参数中启用</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFProcessEx(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo,System.Int32)">
+            <summary>
+            人脸属性检测（年龄/性别/人脸3D角度/口罩/额头区域），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">多人脸信息</param>
+            <param name="combinedMask">1.检测的属性（ASF_AGE、ASF_GENDER、 ASF_FACE3DANGLE、ASF_LIVENESS、ASF_FACELANDMARK、ASF_MASKDETECT）支持多选2.检测的属性须在引擎初始化接口的combinedMask参数中启用</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetAge(System.IntPtr,ArcFaceProSDK4net.Models.ASF_AgeInfo@)">
+            <summary>
+            获取年龄信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="ageInfo">检测到的年龄信息数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetGender(System.IntPtr,ArcFaceProSDK4net.Models.ASF_GenderInfo@)">
+            <summary>
+            获取性别信息。
+            </summary>
+            <param name="hEngine"></param>
+            <param name="genderInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetFace3DAngle(System.IntPtr,ArcFaceProSDK4net.Models.ASF_Face3DAngle@)">
+            <summary>
+            获取3D角度信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="face3DAngle">检测到的3D角度信息数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetLivenessScore(System.IntPtr,ArcFaceProSDK4net.Models.ASF_LivenessInfo@)">
+            <summary>
+            获取RGB活体信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="livenessInfo">检测到的活体信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFSetFaceShelterParam(System.IntPtr,System.Single)">
+            <summary>
+            设置遮挡算法检测的阈值。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="ShelterThreshhold">设置遮挡算法检测的阈值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetMask(System.IntPtr,ArcFaceProSDK4net.Models.ASF_MaskInfo@)">
+            <summary>
+            获取人脸是否戴口罩。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="maskInfo">检测到人脸是否戴口罩的信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetFaceLandMark(System.IntPtr,ArcFaceProSDK4net.Models.ASF_LandMarkInfo@)">
+            <summary>
+            获取额头区域位置。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="LandMarkInfo">人脸额头点数组，每张人脸额头区域通过四个点表示</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFProcess_IR(System.IntPtr,System.Int32,System.Int32,System.Int32,System.IntPtr,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo,ArcFaceProSDK4net.Models.ASF_Mask)">
+            <summary>
+            该接口仅支持单人脸 IR 活体检测，超出返回未知。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="width">图片宽度，为4的倍数</param>
+            <param name="height">图片高度</param>
+            <param name="format">图像颜色格式</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">多人脸信息</param>
+            <param name="combinedMask">目前仅支持 ASF_IR_LIVENESS</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFProcessEx_IR(System.IntPtr,ArcFaceProSDK4net.Models.ASVLOFFSCREEN,ArcFaceProSDK4net.Models.ASF_MultiFaceInfo,ArcFaceProSDK4net.Models.ASF_Mask)">
+            <summary>
+            该接口仅支持单人脸 IR 活体检测，超出返回未知。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="imgData">图像数据</param>
+            <param name="detectedFaces">多人脸信息</param>
+            <param name="combinedMask">目前仅支持 ASF_IR_LIVENESS</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFGetLivenessScore_IR(System.IntPtr,ArcFaceProSDK4net.Models.ASF_LivenessInfo@)">
+            <summary>
+            获取IR活体信息。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="livenessInfo">检测到的IR活体信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFFaceFeatureCompare(System.IntPtr,ArcFaceProSDK4net.Models.ASF_FaceFeature,ArcFaceProSDK4net.Models.ASF_FaceFeature,System.Single@,ArcFaceProSDK4net.Models.ASF_CompareModel)">
+            <summary>
+            人脸特征比对，输出比对相似度。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <param name="faceFeature1">人脸特征</param>
+            <param name="faceFeature2">人脸特征</param>
+            <param name="confidenceLevel">比对相似度</param>
+            <param name="compareModel">选择人脸特征比对模型，默认为ASF_LIFE_PHOTO。1. ASF_LIFE_PHOTO：用于生活照之间的特征比对，推荐阈值0.80；2. ASF_ID_PHOTO：用于证件照或证件照和生活照之间的特征比对，推荐阈值0.82；</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFSetLivenessParam(System.IntPtr,ArcFaceProSDK4net.Models.ASF_LivenessThreshold)">
+            <summary>
+            设置RGB/IR活体阈值，若不设置内部默认RGB：0.5 IR：0.7。
+            </summary>
+            <param name="hEngine"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.ASFFunctions.ASFUninitEngine(System.IntPtr)">
+            <summary>
+            销毁SDK引擎。
+            </summary>
+            <param name="hEngine">引擎句柄</param>
+            <returns></returns>
+        </member>
+        <member name="T:ArcFaceProSDK4net.FaceEngine">
+            <summary>
+            人脸识别引擎
+            </summary>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetActiveDeviceInfo">
+            <summary>
+            采集当前设备信息（可离线）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetActiveFileInfo">
+            <summary>
+            获取激活文件信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.OnlineActivation(System.String,System.String,System.String)">
+            <summary>
+            在线激活
+            </summary>
+            <param name="AppId"></param>
+            <param name="SDKKey"></param>
+            <param name="ActiveKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.OnlineActivationFree(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="AppId"></param>
+            <param name="SDKKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.OfflineActivation">
+            <summary>
+            离线激活.将离线激活文件放置到应用程序根目录下并重命名为ArcFacePro.dat
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.OfflineActivation(System.String)">
+            <summary>
+            离线激活.
+            </summary>
+            <param name="activeFile">离线激活文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="P:ArcFaceProSDK4net.FaceEngine.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.FaceEngine.EngineHandler">
+            <summary>
+            引擎句柄
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.FaceEngine.CombinedMask">
+            <summary>
+            当前引擎功能
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.FaceEngine.RegisterOrNot">
+            <summary>
+            提取特征值用途
+            </summary>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.#ctor(ArcFaceProSDK4net.Models.ASF_RegisterOrNot,System.Int32)">
+            <summary>
+            创建一个FaceEngine实例
+            </summary>
+            <param name="registerOrNot"></param>
+            <param name="sdkversion"></param>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetVersion">
+            <summary>
+            获取sdk版本信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.InitEngine(ArcFaceProSDK4net.Models.ASF_DetectMode,ArcFaceProSDK4net.Models.ArcSoftFace_OrientPriority,System.Int32,ArcFaceProSDK4net.Models.ASF_Mask,System.Int32)">
+            <summary>
+            初始化引擎
+            </summary>
+            <param name="detectMode">识别模式</param>
+            <param name="orientPriority">识别角度</param>
+            <param name="detectFaceMaxNum">最大人脸数[1,10]</param>
+            <param name="combinedMask">功能组合</param>
+            <param name="detectFaceScaleVal">识别的最小人脸比例(仅支持2.x及3.x版本)</param>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.DetectFaces(ArcFaceProSDK4net.Utils.ImageInfo,System.Boolean,System.Boolean)">
+            <summary>
+            检测人脸信息。
+            </summary>
+            <param name="image"></param>
+            <param name="process">执行Process方法提取特性</param>
+            <param name="detectonly">如果只检测人脸信息,不做特征值提取,可以设置为true则不会调用Process方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.Process(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo)">
+            <summary>
+            人脸信息检测（年龄/性别/人脸 3D 角度），最多支持 4 张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持 IR 图像检测。
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.ProcessEx(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo)">
+            <summary>
+            人脸信息检测（年龄/性别/人脸3D角度），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetLivenessScore">
+            <summary>
+            获取活体信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetAge">
+            <summary>
+            获取年龄信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetGender">
+            <summary>
+            获取性别
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetFace3DAngle">
+            <summary>
+            获取3D角度信息。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetMask">
+            <summary>
+            获取人脸是否戴口罩。
+            <para>仅支持4.0+</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetFaceLandMark">
+            <summary>
+            获取额头区域位置。
+            <para>仅支持4.0+</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.DetectFacesEx(ArcFaceProSDK4net.Utils.ImageInfo,System.Boolean,System.Boolean)">
+            <summary>
+            检测人脸信息。
+            <para>注：该接口与 DetectFaces 功能一致，但采用结构体的形式传入图像数据，对更高精度的图像兼容性更好。</para>
+            </summary>
+            <param name="image"></param>
+            <param name="process">执行Process方法提取特性</param>
+            <param name="detectonly">如果只检测人脸信息,不做特征值提取,可以设置为true则不会调用Process方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureExtract(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo)">
+            <summary>
+            提取特征值
+            <para>使用当前引擎初始化时设置的RegisterOrNot</para>
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureExtractEx(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo)">
+            <summary>
+            提取特征值
+            <para>使用当前引擎初始化时设置的RegisterOrNot</para>
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureExtract(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_RegisterOrNot)">
+            <summary>
+            提取特征值
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <param name="registerOrNot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureExtractEx(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo,ArcFaceProSDK4net.Models.ASF_RegisterOrNot)">
+            <summary>
+            提取特征值
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <param name="registerOrNot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.UpdateFaceData(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo)">
+            <summary>
+            更新人脸信息。
+            <para>该接口主要用于在需要修改人脸框时候更新人脸数据，用于之后的算法检测。一般常用与双目摄像头对齐，对齐之后的人脸框传入该接口更新人脸数据用于之后的红外活体检测。</para>
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.UpdateFaceDataEx(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo)">
+            <summary>
+            更新人脸信息。
+            <para>该接口主要用于在需要修改人脸框时候更新人脸数据，用于之后的算法检测。一般常用与双目摄像头对齐，对齐之后的人脸框传入该接口更新人脸数据用于之后的红外活体检测。</para>
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.ImageQualityDetect(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo)">
+            <summary>
+            支持单人脸图像质量检测。
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.ImageQualityDetectEx(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.SingleFaceInfo)">
+            <summary>
+            支持单人脸图像质量检测。
+            </summary>
+            <param name="image"></param>
+            <param name="singleFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureCompare(System.Byte[],System.Byte[])">
+            <summary>
+            人脸特征比对，输出比对相似度。
+            </summary>
+            <param name="feature1"></param>
+            <param name="feature2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureCompare(ArcFaceProSDK4net.Models.ASF_FaceFeature,ArcFaceProSDK4net.Models.ASF_FaceFeature,ArcFaceProSDK4net.Models.ASF_CompareModel)">
+            <summary>
+            人脸特征比对，输出比对相似度。
+            </summary>
+            <param name="feature1"></param>
+            <param name="feature2"></param>
+            <param name="compareModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.FaceFeatureCompare(ArcFaceProSDK4net.Models.ASF_FaceFeature,System.Byte[])">
+            <summary>
+            人脸特征比对，输出比对相似度。
+            </summary>
+            <param name="feature1"></param>
+            <param name="feature2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.SetLivenessParam(System.Single,System.Single)">
+            <summary>
+            设置RGB/IR活体阈值，若不设置内部默认RGB：0.5 IR：0.7。
+            </summary>
+            <param name="thresholdmodel_BGR"></param>
+            <param name="thresholdmodel_IR"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.SetFaceShelterParam(System.Single)">
+            <summary>
+            设置遮挡算法检测的阈值。
+            </summary>
+            <param name="ShelterThreshhold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.Process_IR(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo@)">
+            <summary>
+            该接口仅支持单人脸 IR 活体检测，超出返回未知。
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.ProcessEx_IR(ArcFaceProSDK4net.Utils.ImageInfo,ArcFaceProSDK4net.Models.MultiFaceInfo@)">
+            <summary>
+            该接口仅支持单人脸 IR 活体检测，超出返回未知。
+            </summary>
+            <param name="image"></param>
+            <param name="multiFaceInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.GetLivenessScore_IR">
+            <summary>
+            获取IR活体信息。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.FaceEngine.Dispose">
+            <summary>
+            释放引擎
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASVLOFFSCREEN.u32PixelArrayFormat">
+            <summary>
+            图片格式
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASVLOFFSCREEN.i32Width">
+            <summary>
+            宽
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASVLOFFSCREEN.i32Height">
+            <summary>
+            高
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASVLOFFSCREEN.ppu8Plane">
+            <summary>
+            图像数据
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASVLOFFSCREEN.pi32Pitch">
+            <summary>
+            步长
+            </summary>       
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASF_ImagePixelFormat.ASVL_PAF_RGB24_B8G8R8">
+            <summary>
+            RGB24图片格式
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Models.ASF_ImagePixelFormat.ASVL_PAF_GRAY">
+            <summary>
+            GRAY图片格式
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.faceRects">
+            <summary>
+            人脸Rect结果集
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.faceOrients">
+            <summary>
+            人脸角度结果集，与faceRects一一对应  对应ASF_OrientCode
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.faceNum">
+            <summary>
+            结果集大小
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.faceID">
+            <summary>
+            face ID，IMAGE模式下不返回FaceID
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.WearGlasses">
+            <summary>
+            是否戴眼镜
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.FaceShelter">
+            <summary>
+            面部是否遮挡
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.LeftEyeClosed">
+            <summary>
+            左眼状态
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.RightEyeClosed">
+            <summary>
+            右眼状态
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Models.MultiFaceInfo.FaceDataInfos">
+            <summary>
+            多张人脸信息
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Utils.ImageInfo.maxWidth">
+            <summary>
+            最大宽度
+            </summary>
+        </member>
+        <member name="F:ArcFaceProSDK4net.Utils.ImageInfo.maxHeight">
+            <summary>
+            最大高度
+            </summary>
+        </member>
+        <member name="M:ArcFaceProSDK4net.Utils.ImageInfo.getWidthAndHeight(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取图片缩放比例
+            </summary>
+            <param name="oldWidth">原图片宽</param>
+            <param name="oldHeigt">原图片高</param>
+            <param name="newWidth">目标图片宽</param>
+            <param name="newHeight">目标图片高</param>
+            <returns></returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.Utils.ImageInfo.ReadBMP(System.Drawing.Bitmap)">
+            <summary>
+            获取RGB图片信息
+            </summary>
+            <param name="image">图片</param>
+            <returns>图片数据</returns>
+        </member>
+        <member name="M:ArcFaceProSDK4net.Utils.ImageInfo.ReadBMP_IR(System.Drawing.Image)">
+            <summary>
+            获取IR图片信息
+            </summary>
+            <param name="image">图片</param>
+            <returns>图片数据</returns>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Utils.ImageInfo.imgData">
+            <summary>
+            图片的像素数据
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Utils.ImageInfo.width">
+            <summary>
+            图片像素宽
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Utils.ImageInfo.height">
+            <summary>
+            图片像素高
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Utils.ImageInfo.format">
+            <summary>
+            图片格式
+            </summary>
+        </member>
+        <member name="P:ArcFaceProSDK4net.Utils.ImageInfo.widthStep">
+            <summary>
+            步长
+            </summary>
+        </member>
+    </members>
+</doc>

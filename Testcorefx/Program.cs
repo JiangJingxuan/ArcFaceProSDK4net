@@ -16,11 +16,11 @@ namespace Testcorefx
     {
         static void Main(string[] args)
         {
+            FaceEngine.OfflineActivation();
             var faceengine = new FaceEngine(ASF_RegisterOrNot.ASF_REGISTER, 2);
-
             //faceengine.OnlineActivation("", "", "");
-            FaceEngine.OnlineActivationFree("", "");
-            //faceengine.OfflineActivation();
+            //FaceEngine.OnlineActivationFree("", "");
+            //faceengine.OfflineActivation()；
 
 
             faceengine.InitEngine(ASF_DetectMode.ASF_DETECT_MODE_IMAGE, ArcSoftFace_OrientPriority.ASF_OP_0_ONLY, 1, ASF_Mask.ASF_FACE_DETECT | ASF_Mask.ASF_FACERECOGNITION | ASF_Mask.ASF_AGE | ASF_Mask.ASF_LIVENESS);
