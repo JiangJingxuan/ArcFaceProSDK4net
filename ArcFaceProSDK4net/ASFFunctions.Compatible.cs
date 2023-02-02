@@ -49,6 +49,19 @@ namespace ArcFaceProSDK4net
             [DllImport(Dll_PATH, CallingConvention = CallingConvention.Cdecl)]
             public static extern MResult ASFFaceFeatureExtract(IntPtr hEngine, int width, int height, int format, IntPtr imgData, ASF_SingleFaceInfo faceInfo, out ASF_FaceFeature feature, int threadNum = 1);
 
+            /// <summary>
+            /// 单人脸特征提取2.x版本
+            /// </summary>
+            /// <param name="pEngine">引擎handle</param>
+            /// <param name="width">图片宽度为4的倍数且大于0</param>
+            /// <param name="height">YUYV/I420/NV21/NV12格式的图片高度为2的倍数，BGR24格式的图片高度不限制</param>
+            /// <param name="format">颜色空间格式</param>
+            /// <param name="pImageData">图片数据</param>
+            /// <param name="faceInfo">单张人脸位置和角度信息</param>
+            /// <param name="faceFeature">人脸特征</param>
+            /// <returns></returns>
+            [DllImport("libarcsoft_face_engine.dll", EntryPoint = "ASFFaceFeatureExtract", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern MResult ASFFaceFeatureExtractV2(IntPtr pEngine, int width, int height, int format, IntPtr pImageData, ref ASF_SingleFaceInfo faceInfo, out ASF_FaceFeature faceFeature);
 
             /// <summary>
             /// 单人特征提取。

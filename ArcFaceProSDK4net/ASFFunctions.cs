@@ -181,7 +181,19 @@ namespace ArcFaceProSDK4net
         /// <returns></returns>
         [DllImport(Dll_PATH, CallingConvention = CallingConvention.Cdecl)]
         public static extern MResult ASFProcess(IntPtr hEngine, int width, int height, int format, IntPtr imgData, ASF_MultiFaceInfo detectedFaces, int combinedMask);
-
+        /// <summary>
+        /// 人脸信息检测（年龄/性别/人脸3D角度），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
+        /// </summary>
+        /// <param name="pEngine">引擎handle</param>
+        /// <param name="width">图片宽度为4的倍数且大于0</param>
+        /// <param name="height">YUYV/I420/NV21/NV12格式的图片高度为2的倍数，BGR24格式的图片高度不限制</param>
+        /// <param name="format">颜色空间格式</param>
+        /// <param name="pImageData">图片数据</param>
+        /// <param name="detectedFaces">检测到的人脸信息</param>
+        /// <param name="combinedMask">初始化中参数combinedMask与ASF_AGE| ASF_GENDER| ASF_FACE3DANGLE的交集的子集</param>
+        /// <returns></returns>
+        [DllImport("libarcsoft_face_engine.dll", EntryPoint = "ASFProcess", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern MResult ASFProcessV2(IntPtr pEngine, int width, int height, int format, IntPtr pImageData, ref ASF_MultiFaceInfo detectedFaces, uint combinedMask);
         /// <summary>
         /// 人脸属性检测（年龄/性别/人脸3D角度/口罩/额头区域），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
         /// </summary>

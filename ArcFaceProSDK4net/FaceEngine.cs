@@ -226,8 +226,17 @@ namespace ArcFaceProSDK4net
         public bool Process(ImageInfo image, MultiFaceInfo multiFaceInfo)
         {
             var processcombinMask = CombinedMask & ~ASF_Mask.ASF_FACE_DETECT & ~ASF_Mask.ASF_FACERECOGNITION & ~ASF_Mask.ASF_IMAGEQUALITY & ~ASF_Mask.ASF_IR_LIVENESS & ~ASF_Mask.ASF_FACESHELTER & ~ASF_Mask.ASF_UPDATE_FACEDATA;
-            var result = ASFFunctions.ASFProcess(EngineHandler, image.width, image.height, image.format, image.imgData, multiFaceInfo.ASFMultiFaceInfo, (int)processcombinMask);
-            return result == MResult.MOK;
+            if (_version > 2)
+            {
+                var result = ASFFunctions.ASFProcess(EngineHandler, image.width, image.height, image.format, image.imgData, multiFaceInfo.ASFMultiFaceInfo, (int)processcombinMask);
+                return result == MResult.MOK;
+            }
+            else
+            {
+                var faceinfo = multiFaceInfo.ASFMultiFaceInfo;
+                var result = ASFFunctions.ASFProcessV2(EngineHandler, image.width, image.height, image.format, image.imgData, ref faceinfo, (uint)processcombinMask);
+                return result == MResult.MOK;
+            }
         }
         /// <summary>
         /// 人脸信息检测（年龄/性别/人脸3D角度），最多支持4张人脸信息检测，超过部分返回未知（活体仅支持单张人脸检测，超出返回未知）,接口不支持IR图像检测。
@@ -443,7 +452,15 @@ namespace ArcFaceProSDK4net
             if (_version >= 4)
                 result = ASFFunctions.ASFFaceFeatureExtract(EngineHandler, image.width, image.height, image.format, image.imgData, singleFaceInfo.ASFSingleFaceInfo, registerOrNot, singleFaceInfo.Mask ? 1 : 0, out feature);
             else
-                result = ASFFunctions.Compatible.ASFFaceFeatureExtract(EngineHandler, image.width, image.height, image.format, image.imgData, singleFaceInfo.ASFSingleFaceInfo, out feature);
+            {
+                if (_version > 2)
+                    result = ASFFunctions.Compatible.ASFFaceFeatureExtract(EngineHandler, image.width, image.height, image.format, image.imgData, singleFaceInfo.ASFSingleFaceInfo, out feature);
+                else
+                {
+                    var faceInfo = singleFaceInfo.ASFSingleFaceInfo;
+                    result = ASFFunctions.Compatible.ASFFaceFeatureExtractV2(EngineHandler, image.width, image.height, image.format, image.imgData, ref faceInfo, out feature);
+                }
+            }
             if (result == MResult.MOK)
             {
                 var entity = new FaceFeaturePro();
